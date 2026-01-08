@@ -6,10 +6,19 @@ deck.shuffle()
 stack = deck.draw_stack(5)
 
 deck.show_stack(stack)
+print()
+# Funckja pokazująca jaki jest wynik rozgrywki
+def check_the_hand(stack):
+    if (is_Quads(stack)):
+        return "QUADS!"
+    elif (is_full_house(stack)):
+        return "FULL HOUSE!"
+    elif (is_three_of_kind(stack)):
+        return "THREE OF KIND!"
+    elif (are_two_pairs(stack)):
+        return "TWO PAIRS!"
+    elif (is_one_pair(stack)):
+        return "PAIR!"
+    else: return is_high_card(stack)
 
-# High Card
-high_card = is_high_card(stack)
-print(f'High card: {high_card}')
-
-if is_one_pair(stack):
-    print("para")
+print(check_the_hand(stack))

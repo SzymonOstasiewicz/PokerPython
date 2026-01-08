@@ -20,7 +20,7 @@ class Deck:
                     "rank": rank,
                     "color": color,
                     "value": RANK_VALUES[rank],
-                    "label": f"{rank} {color}"
+                    "label": f"{rank}{color}"
                 })
 
     def shuffle(self):
@@ -40,6 +40,5 @@ class Deck:
         return stack
     
     def show_stack(self, stack):
-        for card in stack:
-            print(card["label"])
+        print("  | ".join(card["label"] for card in stack))
         
