@@ -12,16 +12,20 @@ RANK_VALUES = {
 }
 class Deck:
     def __init__(self):
-        self.cards = []
+        self.cards = self.create_deck()
+        self.shuffle()
 
+    def create_deck(self):
+        cards = []
         for color in Color:
             for rank in Ranks:
-                self.cards.append({
+                cards.append({
                     "rank": rank,
                     "color": color,
                     "value": RANK_VALUES[rank],
                     "label": f"{rank}{color}"
                 })
+        return cards
 
     def shuffle(self):
         random.shuffle(self.cards)
@@ -29,7 +33,11 @@ class Deck:
     def show_cards(self):
         for card in self.cards:
             print(card["label"])
-    
+
+    def reset(self):
+        self.cards = self.create_deck()
+        self.shuffle()
+
     def draw_card(self):
         return self.cards.pop(random.randrange(len(self.cards)))
         
@@ -41,4 +49,14 @@ class Deck:
     
     def show_stack(self, stack):
         print("  | ".join(card["label"] for card in stack))
-        
+
+    def sort_cards(cards):
+        card_values = [card["value"] for card in cards]
+
+        for _ in range(len(card_values)):
+            for j in range(len(card_values)-1):
+                if card_values[j] < card_values[j+1]:
+                    tmp = card_values[j]
+                    card_values[j] =  card_values[j+1]
+                    card_values[j+1] = tmp
+        return card_values
