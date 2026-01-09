@@ -3,7 +3,7 @@ from hand import *
 
 deck = Deck() 
 deck.shuffle()
-# stack = deck.draw_stack(5)
+stack = deck.draw_stack(5)
 
 # deck.show_stack(stack)
 print()
@@ -14,6 +14,8 @@ def check_the_hand(stack):
         return "QUADS!"
     elif (is_full_house(stack)):
         return "FULL HOUSE!"
+    elif (is_flush(stack)):
+        return "FLUSH"
     elif (is_strit(stack)):
         return "STRIT"
     elif (is_three_of_kind(stack)):
@@ -26,13 +28,15 @@ def check_the_hand(stack):
 
 # print(check_the_hand(stack))
 
-result = ""
-attempts = 0
+def check_how_many_attemps(deck):
+    result = ""
+    attempts = 0
+    while result != "FLUSH":
+        deck.reset()
+        stack = deck.draw_stack(5)
+        result = check_the_hand(stack)
+        attempts += 1
+    deck.show_stack(stack)   
+    return (f"Try: {attempts} -> {result}")
 
-while result != "STRIT":
-    deck.reset()
-    stack = deck.draw_stack(5)
-    result = check_the_hand(stack)
-    attempts += 1
-    deck.show_stack(stack)
-    print("Try:", attempts, "->", result)
+print(check_how_many_attemps(deck))

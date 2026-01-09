@@ -1,15 +1,20 @@
 import random;
 
-Color = ['♥️','♦️',
-         '♣️', '♠️']
+Color = {"KIER":'♥️',
+         "KARO":'♦️',
+         "TREFL":'♣️',
+         "PIK":'♠️'}
+
 Ranks = ['A', '2', '3', '4',
          '5', '6', '7', '8',
          '9', '10', 'J', 'Q', 'K']
+
 RANK_VALUES = {
     '2': 2, '3': 3, '4': 4, '5': 5, '6': 6,
     '7': 7, '8': 8, '9': 9, '10': 10,
     'J': 11, 'Q': 12, 'K': 13, 'A': 14
 }
+
 class Deck:
     def __init__(self):
         self.cards = self.create_deck()
@@ -17,13 +22,14 @@ class Deck:
 
     def create_deck(self):
         cards = []
-        for color in Color:
+        for color, symbol in Color.items():
             for rank in Ranks:
                 cards.append({
                     "rank": rank,
                     "color": color,
+                    "symbol": symbol,
                     "value": RANK_VALUES[rank],
-                    "label": f"{rank}{color}"
+                    "label": f"{rank}{symbol}"
                 })
         return cards
 

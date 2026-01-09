@@ -45,4 +45,13 @@ def is_strit(cards):
     if (sum_of_connections == 4): return True
     elif (sorted_cards[0] == 14 and sum_of_cards == 14):
         return True
-    
+
+def is_flush(cards):
+    card_colors = [card["color"] for card in cards]
+
+    sum_same_colors = 0
+    for i in range(len(card_colors)-1):
+        if card_colors[0] == card_colors[i+1]:
+            sum_same_colors+=1
+    if(sum_same_colors==4):
+        return True
