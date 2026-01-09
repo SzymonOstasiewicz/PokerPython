@@ -34,7 +34,7 @@ def is_full_house(cards):
 def is_Quads(cards):
     if(count_occurrences(cards) == 6): return True
 
-def is_strit(cards):
+def is_straight(cards):
     sorted_cards = Deck.sort_cards(cards)
     sum_of_cards = 0
     sum_of_connections = 0
@@ -54,4 +54,17 @@ def is_flush(cards):
         if card_colors[0] == card_colors[i+1]:
             sum_same_colors+=1
     if(sum_same_colors==4):
+        return True
+
+def is_straight_flush(cards):
+    if(is_flush(cards) and is_straight(cards)):
+        return True
+
+def is_royal_flush(cards):
+    card_values = [card["value"] for card in cards]
+    sum_of_cards=0
+
+    for card_value in card_values:
+        sum_of_cards+=card_value
+    if(is_flush(cards) and is_straight(cards) and sum_of_cards==60):
         return True
