@@ -66,5 +66,6 @@ def is_royal_flush(cards):
 
     for card_value in card_values:
         sum_of_cards+=card_value
-    if(is_flush(cards) and is_straight(cards) and sum_of_cards==60):
-        return True
+    if(sum_of_cards==60):
+        if(is_flush(cards) and is_straight(cards)):
+            return True
